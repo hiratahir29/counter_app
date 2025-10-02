@@ -1,5 +1,6 @@
 const initialState={
-    counter:0
+    counter:0,
+    history:[]
 }
 
 
@@ -32,7 +33,24 @@ const reducer=(state=initialState,action)=>{
             counter:state.counter-action.value
         }
     }
-    
+    if(action.type==='STORE')
+    {
+
+        return{
+            ...state,
+            history:state.history.concat(state.counter)
+        }
+    }
+        if(action.type==='DELETE')
+    {
+       // const idToDelete=2;
+        let arr=[...state.history]
+        arr.splice(action.id,1);
+        return{
+            ...state,
+            history:arr
+        }
+    }
     return state;
 }
 
