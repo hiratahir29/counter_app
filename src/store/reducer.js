@@ -1,5 +1,6 @@
 const initialState={
-    counter:0
+    counter:0,
+    history:[]
 }
 
 
@@ -32,7 +33,14 @@ const reducer=(state=initialState,action)=>{
             counter:state.counter-action.value
         }
     }
-    
+    if(action.type==='STORE')
+    {
+
+        return{
+            ...state,
+            history:state.history.concat(state.counter)
+        }
+    }
     return state;
 }
 

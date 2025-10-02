@@ -13,6 +13,14 @@ class Counter extends Component {
                 <CounterControl label="Decrement" clicked={this.props.decBy1}  />
                 <CounterControl label="Add 5" clicked={this.props.incBy5}  />
                 <CounterControl label="Subtract 5" clicked={this.props.decBy5}  />
+                <br/>
+                <button onClick={this.props.storeResult}>STORE</button>
+                <ul>
+                    {this.props.storedResults.map((obj)=>{
+                        return <li>{obj}</li>
+
+                    })}
+                </ul>
 
             </div>
         );
@@ -24,12 +32,14 @@ const mapDispatchToProps=dispatch=>{
         decBy1:()=>dispatch({type:'DECREMENT'}),
         incBy5:()=>dispatch({type:'INCREMENTby5',value:5}),
         decBy5:()=>dispatch({type:'DECREMENTby5',value:5}),
+        storeResult:()=>dispatch({type:'STORE'}),
     }
 }
 
 const mapStateToProps=state=>{
     return{
-        ctr:state.counter
+        ctr:state.counter,
+        storedResults:state.history
     }
 }
 
