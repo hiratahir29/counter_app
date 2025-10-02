@@ -41,6 +41,16 @@ const reducer=(state=initialState,action)=>{
             history:state.history.concat(state.counter)
         }
     }
+        if(action.type==='DELETE')
+    {
+       // const idToDelete=2;
+        let arr=[...state.history]
+        arr.splice(action.id,1);
+        return{
+            ...state,
+            history:arr
+        }
+    }
     return state;
 }
 

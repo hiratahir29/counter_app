@@ -16,8 +16,8 @@ class Counter extends Component {
                 <br/>
                 <button onClick={this.props.storeResult}>STORE</button>
                 <ul>
-                    {this.props.storedResults.map((obj)=>{
-                        return <li>{obj}</li>
+                    {this.props.storedResults.map((obj,index)=>{
+                        return <li onClick={()=>this.props.delete(index)}>{obj}</li>
 
                     })}
                 </ul>
@@ -33,6 +33,7 @@ const mapDispatchToProps=dispatch=>{
         incBy5:()=>dispatch({type:'INCREMENTby5',value:5}),
         decBy5:()=>dispatch({type:'DECREMENTby5',value:5}),
         storeResult:()=>dispatch({type:'STORE'}),
+        delete:(idToGet)=>dispatch({type:'DELETE',id:idToGet})
     }
 }
 
